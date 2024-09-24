@@ -30,7 +30,7 @@ account = BankAccount()
 st.title("Banking System")
 
 # Display current balance
-st.write(account.get_balance())
+st.header(f"Current balance: ${st.session_state.balance:.2f}")
 
 # Deposit form
 st.subheader("Deposit")
@@ -46,5 +46,5 @@ if st.button("Withdraw"):
     withdraw_message = account.withdraw(withdraw_amount)
     st.success(withdraw_message)
 
-# Show updated balance after any transaction
-st.write(account.get_balance())
+# Show the balance only once, after transactions
+st.header(f"Updated balance: ${st.session_state.balance:.2f}")
