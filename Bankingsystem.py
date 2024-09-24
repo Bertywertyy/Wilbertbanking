@@ -29,9 +29,6 @@ account = BankAccount()
 # Streamlit UI
 st.title("Banking System")
 
-# Display current balance
-st.header(f"Current balance: ${st.session_state.balance:.2f}")
-
 # Deposit form
 st.subheader("Deposit")
 deposit_amount = st.number_input("Enter amount to deposit", min_value=0.0, step=0.01)
