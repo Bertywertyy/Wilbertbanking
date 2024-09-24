@@ -1,28 +1,29 @@
 import streamlit as st
 
-# BankAccount class to manage balance
-class BankAccount:
-    def __init__(self):
-        self.balance = 0.0
+# Initialize session state for balance if it doesn't exist
+if 'balance' not in st.session_state:
+    st.session_state.balance = 0.0
 
+# BankAccount class to manage balance (using session state)
+class BankAccount:
     def deposit(self, amount):
         if amount > 0:
-            self.balance += amount
-            return f"Deposited: ${amount:.2f}. New balance: ${self.balance:.2f}"
+            st.session_state.balance += amount
+            return f"Deposited: ${amount:.2f}. New balance: ${st.session_state.balance:.2f}"
         return "Deposit amount must be positive."
 
     def withdraw(self, amount):
-        if 0 < amount <= self.balance:
-            self.balance -= amount
-            return f"Withdrew: ${amount:.2f}. New balance: ${self.balance:.2f}"
-        elif amount > self.balance:
+        if 0 < amount <= st.session_state.balance:
+            st.session_state.balance -= amount
+            return f"Withdrew: ${amount:.2f}. New balance: ${st.session_state.balance:.2f}"
+        elif amount > st.session_state.balance:
             return "Insufficient funds."
         return "Withdrawal amount must be positive."
 
     def get_balance(self):
-        return f"Current balance: ${self.balance:.2f}"
+        return f"Current balance: ${st.session_state.balance:.2f}"
 
-# Create a global bank account
+# Create a bank account instance
 account = BankAccount()
 
 # Streamlit UI
