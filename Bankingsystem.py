@@ -20,9 +20,6 @@ class BankAccount:
             return "Insufficient funds."
         return "Withdrawal amount must be positive."
 
-    def get_balance(self):
-        return f"Current balance: ${st.session_state.balance:.2f}"
-
 # Create a bank account instance
 account = BankAccount()
 
